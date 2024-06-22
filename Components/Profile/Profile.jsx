@@ -20,6 +20,8 @@ const Profile = ({
 }) => {
   const [open,setOpen] = useState("Dashboard");
 
+  
+
   return(
     <div className="dsahboard-area- bg-color area-padding">
       <div className="container">

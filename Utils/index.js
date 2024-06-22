@@ -19,7 +19,7 @@ export const CheckIfWalletConnected = async () => {
             method: "eth_accounts",
         })
 
-        const firstAccount = accounts(0);
+        const firstAccount = accounts[0]; //fixed
         return firstAccount;
     } catch (error) {
         console.log(error);
@@ -37,7 +37,7 @@ export const connectWallet = async() => {
         const accounts = await window.ethereum.request({
             method: "eth_requestAccounts",
         });
-        const firstAccount = accounts(0);
+        const firstAccount = accounts[0];
         return firstAccount;
     } catch (error) {
         console.log(error);

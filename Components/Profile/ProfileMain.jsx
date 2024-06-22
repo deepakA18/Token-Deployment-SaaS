@@ -42,7 +42,10 @@ const ProfileMain = ({
     value: `#${mainBalance == undefined ? "Only Owner See": mainBalance}`,
   }]
 
-  const contractOwner = "0x88447cCd5095e37243B4A47401019fb9A085b1a9";
+  const contractOwner = "0x88447cCd5095e37243B4A47401019fb9A085b1a9".toLowerCase();
+
+  console.log("address",address)
+  // console.log("owner",contractOwner)
   return (
     <div className="col-xl-9 col-lg-9 col-md-8">
       <div className="row-user-dashboard">
@@ -56,7 +59,7 @@ const ProfileMain = ({
                     <a className="user-btn coin-btn" onClick={()=> donateFund()}>
                       Donate 1 Bera
                     </a>
-                    {address == contractOwner && (
+                    {address === contractOwner && (
                       <a href="" onClick={() => withdrawFund()} className="user-btn color-btn">
                         Withdraw funds
                       </a>

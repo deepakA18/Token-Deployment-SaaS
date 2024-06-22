@@ -2998,10 +2998,11 @@ span.email-notes {
 
 .dashboard-menu ul li a {
   color: #f5f5f5;
-  padding: 10px 20px;
+  padding: 10px 15px;
   display: block;
   border-radius: 3px;
   margin: 8px 0px;
+  cursor: pointer;
 }
 
 .dashboard-menu ul li a i {
@@ -3278,6 +3279,7 @@ span.email-notes {
 .coin-btn:hover {
   background-position: 100%;
   color: #ff06b7;
+  cursor: pointer;
 }
 
 .color-btn {

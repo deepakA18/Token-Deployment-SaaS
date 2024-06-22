@@ -30,3 +30,4 @@ async function main(){
         process.exitCode = 1;
     })
 }
+

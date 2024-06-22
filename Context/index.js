@@ -54,14 +54,17 @@ export const StateContextProvider = ({children}) => {
                         "ether"
                     ),
                 }
-
+                
                 setNativeTokens(nativeToken)
-                console.log(nativeContract);
+                
+                console.log("Native contract",nativeContract);
             }
-
+            else{
+                console.log("error!!")
+            }
             const lookUpContract = await connectingWithContract();
             
-            if(account == 0x88447cCd5095e37243B4A47401019fb9A085b1a9)
+            if(account == "0x88447cCd5095e37243B4A47401019fb9A085b1a9")
             {
                 const contractBalance = lookUpContract.getContractBalance();
                 const mainBal = ethers.utils.formatUnits(
