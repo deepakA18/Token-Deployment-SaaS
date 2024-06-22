@@ -26,6 +26,10 @@ Kindly follow the following Instructions to run the project in your system and i
   GET: VsCode Editor
 ```
 
+####
+LookUp: 0x4fb792011C5A11FD42062C63aE4433Fa2f51c0C2
+ERC20: 0x52Aaa35F7F3B5D763dc2f97eB416203e6bAD01Ec
+
 #### NodeJs & NPM Version
 
 ```https://nodejs.org/en/download

@@ -2,16 +2,17 @@ require("@nomicfoundation/hardhat-toolbox");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
-const NEXT_PUBLIC_POLYGON_MUMBAI_RPC = "https://rpc.ankr.com/polygon_mumbai";
-const NEXT_PUBLIC_PRIVATE_KEY = "YOUR_PRIVATE_KEY";
+const NEXT_PUBLIC_RPC_URL = "https://bartio.rpc.berachain.com";
+const NEXT_PUBLIC_PRIVATE_KEY = "a8809b40c030628d29be1febd1bc3b29a2298837699837d8bb9e97004a93b17f";
 module.exports = {
-  solidity: "0.8.0",
-  defaultNetwork: "matic",
+  solidity: "0.8.24",
+  defaultNetwork: "Berachain Bartio",
   networks: {
     hardhat: {},
-    polygon_mumbai: {
-      url: NEXT_PUBLIC_POLYGON_MUMBAI_RPC,
+    berachain_bartio: {
+      url: NEXT_PUBLIC_RPC_URL,
       accounts: [`0x${NEXT_PUBLIC_PRIVATE_KEY}`],
+      chainId: 80084,
     },
   },
 };
