@@ -6,8 +6,8 @@ const tokens = (_number) => {
 }
 
 async function main(){
-    const _tokenName = "";
-    const _tokenSymbol = "";
+    const _tokenName = "Bing Bong Credit";
+    const _tokenSymbol = "BBC";
     const _initialSupply = tokens(1000);
     const ERC20Generator = await hre.ethers.getContractFactory("ERC20Generator");
     const erc20Generator = await ERC20Generator.deploy(
@@ -24,10 +24,11 @@ async function main(){
 
     await lookUpContract.deployed()
     console.log(`LookUpContract: ${lookUpContract.address}`);
+}
 
-    main().catch((error)=> {
+main().catch((error)=> {
         console.error(error);
         process.exitCode = 1;
     })
-}
+
 

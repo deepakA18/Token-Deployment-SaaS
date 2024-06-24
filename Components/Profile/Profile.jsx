@@ -15,7 +15,7 @@ const Profile = ({
   donateFund,
   getAllDonation,
   mainBalance,
-  setTrasnfer,
+  setTransfer,
   nativeToken,
 }) => {
   const [open,setOpen] = useState("Dashboard");
@@ -31,7 +31,7 @@ const Profile = ({
            setOpen={setOpen}
            open={open}
            setActive={setActive}
-           setTrasnfer={setTrasnfer}
+           setTransfer={setTransfer}
            />
 
             <ProfileMain 

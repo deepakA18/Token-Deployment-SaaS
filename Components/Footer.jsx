@@ -69,7 +69,7 @@ const Footer = () => {
                               <ul className="footer-list">
                                 {coinList.map((coin,i)=> (
                                   <li>
-                                    <a>coin</a>
+                                    <a>{coin}</a>
                                   </li>
                                 ))}
                               </ul>

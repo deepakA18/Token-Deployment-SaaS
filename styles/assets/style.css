@@ -2909,6 +2909,7 @@ span.email-notes {
   transition: all 0.4s ease 0s;
   background: #ab46d2;
   border: 1px solid #ab46d2;
+  color: #fff; /*added */
 }
 
 /*--------------------------------*/
@@ -3304,7 +3305,7 @@ span.email-notes {
 
 .color-btn:hover {
   background-position: 100%;
-  color: #ab46d2;
+  color: #cfff;    /*#ab46d2*/
 }
 
 .top-btn {
