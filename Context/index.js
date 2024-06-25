@@ -34,6 +34,7 @@ export const StateContextProvider = ({ children }) => {
         setAddress(account);
         //Native Token
         const nativeContract = await connectingNativeTokenContract();
+        // console.log(nativeContract);
 
         if (account) {
         const nativeBalance = await nativeContract.balanceOf(account);
@@ -57,6 +58,7 @@ export const StateContextProvider = ({ children }) => {
 
       //Get contract
         const lookUpContract = await connectingWithContract();
+        console.log("lookUP", lookUpContract);
         //Get contract balance
         if (account === "0x88447cCd5095e37243B4A47401019fb9A085b1a9") {
           const contractBalance = await lookUpContract.getContractBalance();

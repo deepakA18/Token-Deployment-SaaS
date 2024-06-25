@@ -42,7 +42,7 @@ export const connectWallet = async () => {
 };
 
 const fetchContract = (signedOrProvider) => {
-    new ethers.Contract(     //fixed
+  return  new ethers.Contract(     //fixed
     LookUpContract_ADDRESS,
     LookUpContract_ABI,
     signedOrProvider
@@ -56,6 +56,7 @@ export const connectingWithContract = async () => {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = fetchContract(signer);
+    // console.log("lookup",contract);
     return contract;
   } catch (error) {
     console.log(error);
@@ -76,12 +77,13 @@ export const getBalance = async () => {
 };
 
 const fetchTokenContract = (signedOrProvider) => {
-    new ethers.Contract(
+  return new ethers.Contract(
     ERC20Generator_ADDRESS,
     ERC20Generator_ABI,
     signedOrProvider
   );
 };
+
 
 export const connectingNativeTokenContract = async () => {
   try {
@@ -90,6 +92,7 @@ export const connectingNativeTokenContract = async () => {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = fetchTokenContract(signer);
+    // console.log(contract);
     return contract;
   } catch (error) {
     console.log(error);
