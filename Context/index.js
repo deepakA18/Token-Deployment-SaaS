@@ -26,7 +26,7 @@ export const StateContextProvider = ({ children }) => {
     try {
       //Get User Account
       const account = await CheckIfWalletConnected();
-     
+     console.log(account)
         
         //Get user balance
         const balance = await getBalance();
@@ -42,29 +42,29 @@ export const StateContextProvider = ({ children }) => {
         const nativeSymbol = await nativeContract.symbol();
         const nativeDecimal = await nativeContract.decimals();
         const nativeTotalSupply = await nativeContract.totalSupply();
-        const nativeTotalAddress = await nativeContract.address;
+        const nativeTotalAddress =  nativeContract.address;
         const nativeToken = {
-          balance: ethers.utils.formatUnits(nativeBalance.toString(), "ether"),
+          balance: ethers.utils.formatUnits(nativeBalance.toString(), nativeDecimal),  //"ether"
           name: nativeName,
           address: nativeTotalAddress,
           symbol: nativeSymbol,
           decimals: nativeDecimal,
-          totalSupply: ethers.utils.formatUnits(nativeTotalSupply.toString(), "ether"),
+          totalSupply: ethers.utils.formatUnits(nativeTotalSupply.toString(), nativeDecimal),  //"ether"
         };
         setNativeTokens(nativeToken);
-
-        console.log(nativeContract);
+        console.log(nativeToken)
+        // console.log(nativeContract);
       } //close if block
 
       //Get contract
         const lookUpContract = await connectingWithContract();
-        console.log("lookUP", lookUpContract);
+        // console.log("lookUP", lookUpContract);
         //Get contract balance
-        if (account === "0x88447cCd5095e37243B4A47401019fb9A085b1a9") {
+        if (account === "0x88447cCd5095e37243B4A47401019fb9A085b1a9".toLowerCase()) {
           const contractBalance = await lookUpContract.getContractBalance();
           const mainBal = ethers.utils.formatUnits(contractBalance.toString(), "ether");
-          console.log(mainBal);
           setMainBalance(mainBal);
+          
         }
 
         //Get All ERC20 Token(recheck 1hr)
@@ -220,20 +220,67 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
+  // const transferNativeToken = async (token) => {
+  //   try {
+  //     const { address, tokenNo } = token;
+  //     console.log("addres tokenNo", address, token);
+  //     const transferAmount = ethers.utils.parseEther(tokenNo);
+  //     const contract = await connectingNativeTokenContract();
+  //     const transaction = await contract.transfer(address, transferAmount);
+  //     await transaction.wait();
+  //     console.log(transaction);
+  //     window.location.reload();
+  //   } catch (error) {
+  //     console.error("Error transferring native token:", error);
+  //   }
+  // };
+
   const transferNativeToken = async (token) => {
     try {
       const { address, tokenNo } = token;
-      console.log("addres tokenNo", address, token);
+      console.log("address tokenNo", address, token);
       const transferAmount = ethers.utils.parseEther(tokenNo);
+  
       const contract = await connectingNativeTokenContract();
-      const transaction = await contract.transfer(address, transferAmount);
+  
+      // Check balance before attempting transfer
+      const balance = await contract.balanceOf(address);
+      console.log("Balance:", ethers.utils.formatEther(balance));
+  
+      // Ensure the address has enough balance to transfer the specified amount
+      if (balance.lt(transferAmount)) {
+        console.error("Insufficient balance for the transfer.");
+        return;
+      }
+  
+      // Optional: Estimate gas
+      const gasEstimate = await contract.estimateGas.transfer(address, transferAmount);
+      console.log("Gas Estimate:", gasEstimate.toString());
+  
+      const transaction = await contract.transfer(address, transferAmount, {
+        gasLimit: gasEstimate,
+      });
+  
       await transaction.wait();
       console.log(transaction);
       window.location.reload();
     } catch (error) {
       console.error("Error transferring native token:", error);
+  
+      // Specific error handling
+      if (error.code === ethers.errors.UNPREDICTABLE_GAS_LIMIT) {
+        console.error("Transaction may fail or may require a manual gas limit. Error details:", error);
+      } else if (error.code === ethers.errors.INSUFFICIENT_FUNDS) {
+        console.error("Insufficient funds for the transaction.");
+      } else if (error.code === ethers.errors.NONCE_EXPIRED) {
+        console.error("The transaction nonce is too low.");
+      } else {
+        console.error("An unexpected error occurred:", error.message);
+      }
     }
   };
+  
+  
 
   return (
     <StateContext.Provider

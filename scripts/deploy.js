@@ -1,14 +1,13 @@
 const hre = require("hardhat");
 
 const tokens = (_number) => {
-    return ethers.utils.parseUnits(_number.toString(),"ether");
-
+    return ethers.utils.parseUnits(_number.toString(), 18); // Ensuring 18 decimals
 }
 
 async function main(){
     const _tokenName = "Bing Bong Credit";
     const _tokenSymbol = "BBC";
-    const _initialSupply = tokens(1000);
+    const _initialSupply = tokens(10000000); // Setting 1,000,000 tokens as initial supply
     const ERC20Generator = await hre.ethers.getContractFactory("ERC20Generator");
     const erc20Generator = await ERC20Generator.deploy(
         _initialSupply,
@@ -29,6 +28,4 @@ async function main(){
 main().catch((error)=> {
         console.error(error);
         process.exitCode = 1;
-    })
-
-
+    });

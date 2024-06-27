@@ -2,7 +2,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 import About from "./About";
-import Brand from "./Faq";
+import Brand from "./Brand";
 import Faq from "./Faq";
 import Feature from "./Feature";
 import HeroSection from "./HeroSection";

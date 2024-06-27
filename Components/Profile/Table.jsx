@@ -44,8 +44,8 @@ const Table = ({
                                     {token.tokenAddress.slice(0,15)}...
                                 </td>
                                 <td>{token.tokenSupply}</td>
-                                <td>{token.tokenSymbol}</td>
                                 <td>{token.tokenName}</td>
+                                <td>{token.tokenSymbol}</td>
                             
                             </tr>
                         ))}
