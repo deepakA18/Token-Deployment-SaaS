@@ -27,8 +27,9 @@ Kindly follow the following Instructions to run the project in your system and i
 ```
 
 ####
-LookUp: 0x4fb792011C5A11FD42062C63aE4433Fa2f51c0C2
-ERC20: 0x52Aaa35F7F3B5D763dc2f97eB416203e6bAD01Ec
+
+ERC20: 0xB9677672d546E5E1780fE54D4a6B91CB69373797
+LookUp: 0x90452Fd2C91108b680a5f45DFB709A8194f8272c
 
 #### NodeJs & NPM Version
 

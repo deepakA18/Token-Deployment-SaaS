@@ -26,7 +26,7 @@ export const StateContextProvider = ({ children }) => {
     try {
       //Get User Account
       const account = await CheckIfWalletConnected();
-     console.log(account)
+    //  console.log(account)
         
         //Get user balance
         const balance = await getBalance();
@@ -238,14 +238,15 @@ export const StateContextProvider = ({ children }) => {
   const transferNativeToken = async (token) => {
     try {
       const { address, tokenNo } = token;
-      console.log("address tokenNo", address, token);
-      const transferAmount = ethers.utils.parseEther(tokenNo);
+      console.log("address tokenNo", address, tokenNo);
+      const transferAmount = ethers.utils.parseUnits(tokenNo, 18); // Assuming 18 decimals
   
       const contract = await connectingNativeTokenContract();
   
       // Check balance before attempting transfer
       const balance = await contract.balanceOf(address);
-      console.log("Balance:", ethers.utils.formatEther(balance));
+      console.log("Balance in wei:", balance.toString());
+      console.log("Balance in ether:", ethers.utils.formatEther(balance));
   
       // Ensure the address has enough balance to transfer the specified amount
       if (balance.lt(transferAmount)) {
@@ -279,7 +280,6 @@ export const StateContextProvider = ({ children }) => {
       }
     }
   };
-  
   
 
   return (
