@@ -22,8 +22,8 @@ const index = () => {
       <Welcome/>
       {/*<Information />
       <Staking/>
-      <Feature/>
-      <Faq /> */}
+      <Feature/>*/}
+      <Faq /> 
     </main>
     <Footer />
   </div>
