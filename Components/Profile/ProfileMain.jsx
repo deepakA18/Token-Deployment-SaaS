@@ -1,5 +1,6 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Table, TableTwo } from "../index";
+
 
 const ProfileMain = ({
   setOpen,
@@ -14,8 +15,10 @@ const ProfileMain = ({
   donateFund,
   getAllDonation,
   mainBalance,
-  nativeToken,
+  nativeTokens,
 }) => {
+
+  
   const details = [
     {
       title: "Created",
@@ -34,8 +37,8 @@ const ProfileMain = ({
       value: `#${getAllDonation?.length || 0}`,
     },
     {
-      title: `${nativeToken?.symbol} Token`,
-      value: `#${nativeToken?.balance}`,
+      title: `${nativeTokens?.symbol} Token`,
+      value: `#${nativeTokens?.balance}`,
     },
     {
       title: "Contract Balance",

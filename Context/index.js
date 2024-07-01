@@ -42,7 +42,7 @@ export const StateContextProvider = ({ children }) => {
         const nativeSymbol = await nativeContract.symbol();
         const nativeDecimal = await nativeContract.decimals();
         const nativeTotalSupply = await nativeContract.totalSupply();
-        const nativeTotalAddress =  nativeContract.address;
+        const nativeTotalAddress = await nativeContract.address;
         const nativeToken = {
           balance: ethers.utils.formatUnits(nativeBalance.toString(), nativeDecimal),  //"ether"
           name: nativeName,
@@ -52,7 +52,8 @@ export const StateContextProvider = ({ children }) => {
           totalSupply: ethers.utils.formatUnits(nativeTotalSupply.toString(), nativeDecimal),  //"ether"
         };
         setNativeTokens(nativeToken);
-        console.log(nativeToken)
+        console.log("Real native token: ",nativeToken)
+        
         // console.log(nativeContract);
       } //close if block
 
@@ -117,6 +118,8 @@ export const StateContextProvider = ({ children }) => {
   useEffect(() => {
     fetchInitialData();
   }, []);
+
+  console.log("After fetching tokens: ",nativeTokens);
 
   const _deployContract = async (signer, account, name, symbol, supply) => {
     try {
@@ -220,21 +223,7 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
-  // const transferNativeToken = async (token) => {
-  //   try {
-  //     const { address, tokenNo } = token;
-  //     console.log("addres tokenNo", address, token);
-  //     const transferAmount = ethers.utils.parseEther(tokenNo);
-  //     const contract = await connectingNativeTokenContract();
-  //     const transaction = await contract.transfer(address, transferAmount);
-  //     await transaction.wait();
-  //     console.log(transaction);
-  //     window.location.reload();
-  //   } catch (error) {
-  //     console.error("Error transferring native token:", error);
-  //   }
-  // };
-
+  
   const transferNativeToken = async (token) => {
     try {
       const {address,tokenNo} = token;

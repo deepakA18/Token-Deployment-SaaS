@@ -27,7 +27,7 @@ const create = () => {
     donateFund,
     mainBalance,
     transferNativeToken,
-    nativeToken,
+    nativeTokens,
   } = useStateContext();
 
   return(
@@ -44,7 +44,7 @@ const create = () => {
      <main> 
       <UserProfile/>
       <Profile 
-      nativeToken={nativeToken}
+      nativeTokens={nativeTokens}
       transferNativeToken={transferNativeToken}
       mainBalance={mainBalance}
       getAllDonation={getAllDonation}

@@ -16,7 +16,7 @@ const Profile = ({
   getAllDonation,
   mainBalance,
   setTransfer,
-  nativeToken,
+  nativeTokens,
 }) => {
   const [open,setOpen] = useState("Dashboard");
 
@@ -35,7 +35,7 @@ const Profile = ({
            />
 
             <ProfileMain 
-            nativeToken={nativeToken}
+            nativeTokens={nativeTokens}
             mainBalance={mainBalance}
             getAllDonation={getAllDonation}
             donateFund={donateFund}
