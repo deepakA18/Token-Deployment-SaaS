@@ -237,47 +237,18 @@ export const StateContextProvider = ({ children }) => {
 
   const transferNativeToken = async (token) => {
     try {
-      const { address, tokenNo } = token;
-      console.log("address tokenNo", address, tokenNo);
-      const transferAmount = ethers.utils.parseUnits(tokenNo, 18); // Assuming 18 decimals
-  
+      const {address,tokenNo} = token;
+      console.log(address,token);
+      const transferAmount = ethers.utils.parseEther(tokenNo);
+
       const contract = await connectingNativeTokenContract();
-  
-      // Check balance before attempting transfer
-      const balance = await contract.balanceOf(address);
-      console.log("Balance in wei:", balance.toString());
-      console.log("Balance in ether:", ethers.utils.formatEther(balance));
-  
-      // Ensure the address has enough balance to transfer the specified amount
-      if (balance.lt(transferAmount)) {
-        console.error("Insufficient balance for the transfer.");
-        return;
-      }
-  
-      // Optional: Estimate gas
-      const gasEstimate = await contract.estimateGas.transfer(address, transferAmount);
-      console.log("Gas Estimate:", gasEstimate.toString());
-  
-      const transaction = await contract.transfer(address, transferAmount, {
-        gasLimit: gasEstimate,
-      });
-  
+      const transaction = await contract.transfer(address, transferAmount);
+
       await transaction.wait();
       console.log(transaction);
       window.location.reload();
     } catch (error) {
-      console.error("Error transferring native token:", error);
-  
-      // Specific error handling
-      if (error.code === ethers.errors.UNPREDICTABLE_GAS_LIMIT) {
-        console.error("Transaction may fail or may require a manual gas limit. Error details:", error);
-      } else if (error.code === ethers.errors.INSUFFICIENT_FUNDS) {
-        console.error("Insufficient funds for the transaction.");
-      } else if (error.code === ethers.errors.NONCE_EXPIRED) {
-        console.error("The transaction nonce is too low.");
-      } else {
-        console.error("An unexpected error occurred:", error.message);
-      }
+      console.log(error);
     }
   };
   
