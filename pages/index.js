@@ -1,8 +1,8 @@
 import React from "react";
 
-import {Header,Footer,About,Brand,HeroSection,Information,Staking,Swap,Welcome, Faq} from "../Components/index";
+import {Header,Footer,About,Brand,HeroSection,Swap,Welcome, Faq} from "../Components/index";
 import { useStateContext } from "../Context/index";
-import Feature from "../Components/Feature";
+
 
 
 const index = () => {
@@ -20,9 +20,6 @@ const index = () => {
       transferNativeToken={transferNativeToken} 
       />
       <Welcome/>
-      {/*<Information />
-      <Staking/>
-      <Feature/>*/}
       <Faq /> 
     </main>
     <Footer />

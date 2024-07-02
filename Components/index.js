@@ -4,10 +4,9 @@ import Footer from "./Footer";
 import About from "./About";
 import Brand from "./Brand";
 import Faq from "./Faq";
-import Feature from "./Feature";
+
 import HeroSection from "./HeroSection";
-import Information from "./Information";
-import Staking from "./Staking";
+
 import Swap from "./Swap";
 import Welcome from "./Welcome";
 
@@ -30,8 +29,6 @@ export {
     Brand,
     Faq,
     HeroSection,
-    Information,
-    Staking,
     Swap,
     Welcome,
 
